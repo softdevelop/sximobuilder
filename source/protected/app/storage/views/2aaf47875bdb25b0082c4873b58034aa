@@ -1,0 +1,62 @@
+<div class="row  ">
+        <nav style="margin-bottom: 0;" role="navigation" class="navbar navbar-static-top gray-bg">
+        <div class="navbar-header">
+            <a href="javascript:void(0)" class="navbar-minimalize minimalize-btn btn btn-primary "><i class="fa fa-bars"></i> </a>
+            
+        </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+            <li>
+
+            </li>
+		<?php if(CNF_MULTILANG ==1): ?>
+		<li  >
+			<select class="form-control" name="language" onchange="window.location.href = this.value; ">
+				<?php foreach(SiteHelpers::langOption() as $lang): ?>
+				<option value="<?php echo URL::TO('home/lang/'.$lang['folder']); ?>" <?php if(Session::get('lang') == $lang['folder']): ?> selected="selected" <?php endif; ?>>  <?php echo $lang['name']; ?></option>
+				<?php endforeach; ?>
+
+			</select>
+		</li>	
+		<?php endif; ?>
+		<?php if(!Auth::check()): ?>  
+			<li><a href="<?php echo URL::to('user/login'); ?>"><i class="icon-arrow-right12"></i> <?php echo Lang::get('core.signin');; ?></a></li>   
+		<?php else: ?>
+		<?php if(Session::get('gid') ==1): ?>
+		<li class="user dropdown"><a class="dropdown-toggle" href="javascript:void(0)"  data-toggle="dropdown"><i class="fa fa-desktop"></i> <span><?php echo Lang::get('core.m_controlpanel');; ?></span><i class="caret"></i></a>
+		  <ul class="dropdown-menu dropdown-menu-right icons-right">
+		   
+		  	<li><a href="<?php echo URL::to('config'); ?>"><i class="fa  fa-wrench"></i> <?php echo Lang::get('core.m_setting');; ?></a></li>
+			
+
+					<li><a href="<?php echo URL::to('users'); ?>"><i class="fa fa-user"></i> <?php echo Lang::get('core.m_users');; ?> </a></li>
+					<li><a href="<?php echo URL::to('groups'); ?>"><i class="fa fa-users"></i> <?php echo Lang::get('core.m_groups');; ?> </a></li>
+					<li><a href="<?php echo URL::to('config/blast'); ?>"><i class="fa fa-envelope"></i> <?php echo Lang::get('core.m_blastemail');; ?> </a></li>	
+
+			<li><a href="<?php echo URL::to('logs'); ?>"><i class="fa fa-clock-o"></i> <?php echo Lang::get('core.m_logs');; ?></a></li>	
+			<li class="divider"></li>
+			<li><a href="<?php echo URL::to('pages'); ?>"><i class="fa fa-copy"></i> <?php echo Lang::get('core.m_pagecms');; ?></a></li>
+			<li><a href="<?php echo URL::to('blogadmin'); ?>"><i class="fa fa-folder-open"></i> Blog Posts </a></li>	
+			<li><a href="<?php echo URL::to('menu'); ?>"><i class="fa fa-sitemap"></i> <?php echo Lang::get('core.m_menu');; ?></a></li>
+			<li class="divider"></li>
+			<li><a href="<?php echo URL::to('module'); ?>"><i class="fa fa-cogs"></i> <?php echo Lang::get('core.m_codebuilder');; ?></a></li>		
+			<li class="divider"></li>			
+			<li><a href="<?php echo URL::to('config/help'); ?>"><i class="fa fa-book"></i> <?php echo Lang::get('core.m_manual');; ?></a></li>
+		  </ul>
+		</li>
+		<?php endif; ?>	
+		<li class="user dropdown"><a class="dropdown-toggle" href="javascript:void(0)"  data-toggle="dropdown"><i class="fa fa-user"></i> <span><?php echo Lang::get('core.m_myaccount');; ?></span><i class="caret"></i></a>
+		  <ul class="dropdown-menu dropdown-menu-right icons-right">
+		  	<li><a href="<?php echo URL::to('dashboard'); ?>"><i class="fa  fa-laptop"></i> <?php echo Lang::get('core.m_dashboard');; ?></a></li>
+			<li><a href="<?php echo URL::to(''); ?>" target="_blank"><i class="fa fa-desktop"></i>  Main Site </a></li>
+			<li><a href="<?php echo URL::to('user/profile'); ?>"><i class="fa fa-user"></i> <?php echo Lang::get('core.m_profile');; ?></a></li>
+			<li><a href="<?php echo URL::to('user/logout'); ?>"><i class="fa fa-sign-out"></i> <?php echo Lang::get('core.m_logout');; ?></a></li>
+		  </ul>
+		</li>			
+		
+	<?php endif; ?> 				
+				
+            </ul>
+
+        </nav>
+        </div>
